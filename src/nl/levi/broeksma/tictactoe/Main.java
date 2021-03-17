@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("Welcome to Tic Tac Toe");
-        //Stap 1: Maak een spelbord
+
         //Definieer array
         String[] board = new String[9];
         for(int i = 0; i < 9; i++) {
@@ -18,9 +18,11 @@ public class Main {
         printBoard(board);
 
         String currentPlayer = "X";
+        boolean hasWon = false;
 
-        while (true) {
-            //Stap2: stel de vraag om een veld te selecteren
+        while (!hasWon) {
+
+            //Stel de vraag om een veld te selecteren
 
             System.out.println("\n Op welk veld wil jij " + currentPlayer + " zetten?");
 
@@ -29,16 +31,17 @@ public class Main {
 
             board[selectedField] = currentPlayer;
 
+            //Toon bord
             printBoard(board);
+
+            hasWon = hasPlayerWon(board, currentPlayer);
 
             currentPlayer = switchPlayer(currentPlayer);
 
         }
 
-        //Stap 3: Kijk of de speler heeft gewonnen
-        //Stap 4: Laat speler 2 een O zetten
-        //Stap 5: Kijk of de speler heeft gewonnen
-        //Herhaal stap 2 t/m 5 tot er een winnaar bekend is.
+        System.out.println("\n Gefeliciteerd, je hebt gewonnen " + currentPlayer);
+
     }
 
     public static void printBoard(String[] board){
@@ -62,6 +65,46 @@ public class Main {
             return "X";
         }
     }
+
+    public static boolean hasPlayerWon(String[] board, String currentPlayer) {
+
+        //Horizontale opties om te winnen
+
+        if(board[0] == currentPlayer && board[1] == currentPlayer && board[2] == currentPlayer) {
+                return true;
+        }
+
+        if(board[3] == currentPlayer && board[4] == currentPlayer && board[5] == currentPlayer) {
+                return true;
+        }
+
+        if(board[6] == currentPlayer && board[7] == currentPlayer && board[8] == currentPlayer) {
+            return true;
+        }
+
+        //Verticale opties om te winnen
+
+        if(board[0] == currentPlayer && board[3] == currentPlayer && board[6] == currentPlayer) {
+            return true;
+        }
+
+        if(board[1] == currentPlayer && board[4] == currentPlayer && board[7] == currentPlayer) {
+            return true;
+        }
+
+        if(board[2] == currentPlayer && board[5] == currentPlayer && board[8] == currentPlayer) {
+            return true;
+        }
+        //Diagonale opties om te winnen
+        if(board[0] == currentPlayer && board[4] == currentPlayer && board[8] == currentPlayer) {
+            return true;
+        }
+        if(board[2] == currentPlayer && board[4] == currentPlayer && board[6] == currentPlayer) {
+            return true;
+        }
+        return false;
+    }
+
 }
 
 
