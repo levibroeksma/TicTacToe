@@ -13,37 +13,27 @@ public class Main {
         for(int i = 0; i < 9; i++) {
             board[i] = Integer.toString(i);
         }
-        //Definieer de grid van het spelbord
+
+        //Toon het bord
         printBoard(board);
 
-        //Stap 2: Laat speler 1 een X zetten
+        String currentPlayer = "X";
 
-           //stel de vraag om een veld te selecteren
-           System.out.println("\n Op welk veld wil jij jouw waarde (X of O) invullen?");
+        while (true) {
+            //Stap2: stel de vraag om een veld te selecteren
 
-          //gebruik scanner om speler het veld te laten selecteren
-          Scanner userInput = new Scanner(System.in);
+            System.out.println("\n Op welk veld wil jij " + currentPlayer + " zetten?");
 
-          //gebruik de userInput om het gewenste veld in de array te selecteren
-          int fieldSelectedPlayerA = userInput.nextInt();
+            Scanner userInput = new Scanner(System.in);
+            int selectedField = userInput.nextInt();
 
-        //Definieer welk array nummer vervangen moet worden door "X"
-        board[fieldSelectedPlayerA] = "X";
+            board[selectedField] = currentPlayer;
 
-        printBoard(board);
+            printBoard(board);
 
-        //stel de vraag om een veld te selecteren
-        System.out.println("\n Op welk veld wil jij jouw waarde invullen?");
+            currentPlayer = switchPlayer(currentPlayer);
 
-        //gebruik scanner om speler het veld te laten selecteren
-
-        //gebruik de userInput om het gewenste veld in de array te selecteren
-        int fieldSelectedPlayerB = userInput.nextInt();
-
-        //Definieer welk array nummer vervangen moet worden door "X"
-        board[fieldSelectedPlayerB] = "O";
-
-        printBoard(board);
+        }
 
         //Stap 3: Kijk of de speler heeft gewonnen
         //Stap 4: Laat speler 2 een O zetten
@@ -62,6 +52,14 @@ public class Main {
             if(isEndOfRow && !isLastField) {
                 System.out.println("\n _________");
             }
+        }
+    }
+
+    public static String switchPlayer(String currentPlayer) {
+        if(currentPlayer == "X") {
+            return "O";
+        } else {
+            return "X";
         }
     }
 }
