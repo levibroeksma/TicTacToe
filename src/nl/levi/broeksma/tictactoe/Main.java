@@ -36,8 +36,11 @@ public class Main {
 
             hasWon = hasPlayerWon(board, currentPlayer);
 
-            currentPlayer = switchPlayer(currentPlayer);
-
+            if(hasWon){
+                break;
+            } else {
+                currentPlayer = switchPlayer(currentPlayer);
+            }
         }
 
         System.out.println("\n Gefeliciteerd, je hebt gewonnen " + currentPlayer);
